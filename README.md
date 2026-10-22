@@ -29,6 +29,9 @@ docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:<version>-<
 | `8.0.24-apache` | php:8.0-apache (bullseye) | Remi's php80 backport (+ official CVE-2023-0662 prerequisite) | [8.0-apache](8.0-apache/) |
 | `8.0.26-apache` | php:8.0-apache (bullseye) | Remi's php80 backport (+ official CVE-2023-0662 prerequisite) | [8.0-apache](8.0-apache/) |
 | `8.0.28-apache` | php:8.0-apache (bullseye) | Remi's php80 backport | [8.0-apache](8.0-apache/) |
+| `8.1.27-apache` | php:8.1.27-apache (bookworm) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
+| `8.1.28-apache` | php:8.1.28-apache (bookworm) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
+| `8.1.34-apache` | php:8.1.34-apache (trixie) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
 
 Minor-version alias tags (`5.4-fpm`, `7.2-apache`, `7.4-apache`, ...) point to the latest
 patched release of that family. 5.4.45, 7.2.34 and 7.4.33 are the final releases of their
