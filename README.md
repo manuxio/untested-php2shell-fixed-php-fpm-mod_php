@@ -32,6 +32,14 @@ docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:<version>-<
 | `8.1.27-apache` | php:8.1.27-apache (bookworm) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
 | `8.1.28-apache` | php:8.1.28-apache (bookworm) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
 | `8.1.34-apache` | php:8.1.34-apache (trixie) | Remi's php81 backport | [8.1-apache](8.1-apache/) |
+| `8.3.30-fpm` | php:8.3.30-fpm (trixie) | official php.net fix (8.3.36 commit, backported) | [8.3-fpm](8.3-fpm/) |
+| `8.4.26-fpm` | php:8.4.26-fpm (trixie) | official php.net fix (8.4.27 commit, backported) | [8.4-fpm](8.4-fpm/) |
+
+Note: the official 8.3/8.4 fix behaves differently from the EOL minimal mitigation —
+exceeding `memory_limit` unwinds cleanly (shutdown functions run, worker survives); only
+the new hard limit (2× `memory_limit`, INI `memory_hard_limit_percent`) terminates the
+worker (exit 137). `session.upload_progress` is made safe rather than removed, and is
+pinned off via `php_admin_value` in the pool config. See the per-directory READMEs.
 
 Minor-version alias tags (`5.4-fpm`, `7.2-apache`, `7.4-apache`, ...) point to the latest
 patched release of that family. 5.4.45, 7.2.34 and 7.4.33 are the final releases of their
