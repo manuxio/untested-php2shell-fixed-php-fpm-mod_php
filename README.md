@@ -45,22 +45,27 @@ docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:<version>-<
 |---|---|---|
 | 5.4.45 | `REG:5.4.45-apache` | `REG:5.4.45-fpm` |
 | 7.2.34 | `REG:7.2.34-apache` | `REG:7.2.34-fpm` |
-| 7.4.32 | `REG:7.4.32-apache` | — |
-| 7.4.33 | `REG:7.4.33-apache` | — |
-| 8.0.24 | `REG:8.0.24-apache` | — |
-| 8.0.26 | `REG:8.0.26-apache` | — |
-| 8.0.28 | `REG:8.0.28-apache` | — |
-| 8.1.27 | `REG:8.1.27-apache` | — |
-| 8.1.28 | `REG:8.1.28-apache` | — |
-| 8.1.34 | `REG:8.1.34-apache` | — |
-| 8.2.28 | `REG:8.2.28-apache` | — |
-| 8.3.8 | `REG:8.3.8-apache` | — |
-| 8.3.30 | — | `REG:8.3.30-fpm` |
-| 8.4.26 | — | `REG:8.4.26-fpm` |
+| 7.4.32 | `REG:7.4.32-apache` | `REG:7.4.32-fpm` |
+| 7.4.33 | `REG:7.4.33-apache` | `REG:7.4.33-fpm` |
+| 8.0.24 | `REG:8.0.24-apache` | `REG:8.0.24-fpm` |
+| 8.0.26 | `REG:8.0.26-apache` | `REG:8.0.26-fpm` |
+| 8.0.28 | `REG:8.0.28-apache` | `REG:8.0.28-fpm` |
+| 8.1.27 | `REG:8.1.27-apache` | `REG:8.1.27-fpm` |
+| 8.1.28 | `REG:8.1.28-apache` | `REG:8.1.28-fpm` |
+| 8.1.34 | `REG:8.1.34-apache` | `REG:8.1.34-fpm` |
+| 8.2.28 | `REG:8.2.28-apache` | `REG:8.2.28-fpm` |
+| 8.3.8 | `REG:8.3.8-apache` | `REG:8.3.8-fpm` |
+| 8.3.30 | `REG:8.3.30-apache` | `REG:8.3.30-fpm` |
+| 8.4.26 | `REG:8.4.26-apache` | `REG:8.4.26-fpm` |
 
 Minor aliases also exist, pointing to the latest patched release of each family/SAPI:
-`5.4-fpm`, `5.4-apache`, `7.2-fpm`, `7.2-apache`, `7.4-apache`, `8.0-apache`,
-`8.1-apache`, `8.2-apache`, `8.3-apache`, `8.3-fpm`, `8.4-fpm`.
+`5.4-fpm`, `5.4-apache`, `7.2-fpm`, `7.2-apache`, `7.4-fpm`, `7.4-apache`, `8.0-fpm`,
+`8.0-apache`, `8.1-fpm`, `8.1-apache`, `8.2-fpm`, `8.2-apache`, `8.3-fpm`, `8.3-apache`,
+`8.4-fpm`, `8.4-apache`.
+
+The FPM and Apache variant of each version share the same patches byte for byte; each
+`<family>-fpm` / `<family>-apache` directory README documents its variant and points to
+its twin for patch provenance.
 
 Note: the official 8.3/8.4 fix behaves differently from the EOL minimal mitigation —
 exceeding `memory_limit` unwinds cleanly (shutdown functions run, worker survives); only

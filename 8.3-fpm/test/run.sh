@@ -34,6 +34,8 @@ for s in oom oom_soft oom_hard; do
 	docker run --rm --network none -v "$T/www:/w:ro" "$IMG" php /w/$s.php 2>&1
 	echo "[exit $?]"
 done
-echo "=== CLI: opcache caches a script through the patched persist code"
-docker run --rm --network none -v "$T/www:/w:ro" "$IMG" php -d opcache.enable_cli=1 -r 'require "/w/arr.php"; $s = opcache_get_status(false); echo "opcache_enabled=", var_export($s["opcache_enabled"], true), " cached_scripts=", $s["opcache_statistics"]["num_cached_scripts"], "\n";'
+echo "=== CLI: opcache loads and caches a script through the patched persist code (enabled for the test if the image does not enable it)"
+docker run --rm --network none -v "$T/www:/w:ro" "$IMG" sh -c '
+	if php -m | grep -q "^Zend OPcache$"; then echo "(opcache enabled by the image)"; set --; else echo "(opcache loaded for the test)"; set -- -d zend_extension=opcache; fi
+	php "$@" -d opcache.enable_cli=1 -r '\''require "/w/arr.php"; $s = opcache_get_status(false); echo "opcache_enabled=", var_export($s["opcache_enabled"], true), " cached_scripts=", $s["opcache_statistics"]["num_cached_scripts"], "\n";'\'''
 echo "[exit $?]"

@@ -16,6 +16,7 @@ image: downstream Dockerfiles only need to change their `FROM` line.
 | Directory | Replaces | Planned image |
 |---|---|---|
 | [`8.3.8/`](8.3.8/) | `php:8.3.8-apache` (Debian bookworm) | `ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:8.3.8-apache` |
+| [`8.3.30/`](8.3.30/) | `php:8.3.30-apache` (Debian trixie) | `ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:8.3.30-apache` |
 
 There is no `latest` tag. Each directory is a self-contained build context:
 
@@ -32,6 +33,7 @@ version, i.e. the recipe the last published official image of that tag was built
 | Version | Recipe | Commit | Next commit (changes the version) |
 |---|---|---|---|
 | 8.3.8 | `8.3/bookworm/apache` | `b4f429eb7d631134d72a3c47b4bb4b011477253e` | `21e6a92a` "Update 8.3 to 8.3.9" |
+| 8.3.30 | `8.3/trixie/apache` | `3a74db043f304883e3553bdca969363399c87b5f` ("Docs: Fix typo in Dockerfile comment", 20 Jan 2026) | `f4e930a7` "Update to 8.4.21, 8.3.31, 8.2.31" |
 
 (8.3.8 was introduced by `52062af5` "Update to 8.3.8, 8.2.20, 8.1.29 (security releases)",
 6 Jun 2024.) That recipe predates "Enable opcache by default" (2025), so — like the official
@@ -61,6 +63,15 @@ is missing, which would otherwise leave a stale JSON parser.
 `docker-php-source extract` (used by `docker-php-ext-*`) still unpacks the **pristine**
 tarball; extensions built later compile against the installed, patched headers, which is what
 matters for them. Do not rebuild the statically compiled core (e.g. `session`) from that tree.
+
+
+> **8.3.30** is the Apache twin of [`8.3-fpm/8.3.30`](../8.3-fpm/8.3.30/): same recipe commit
+> (`8.3/trixie/apache` @ `3a74db04`), and the CVE patch, mask patch and ini file are byte-identical
+> to the FPM twin's — provenance and the backport of php-src `3c832b52` to 8.3.30 are documented in
+> [`8.3-fpm/README.md`](../8.3-fpm/README.md). As there, the Dockerfile `touch`es the four
+> `ext/json` generated files right after patching. Unlike 8.3.8, the 8.3.30 recipe **enables
+> OPcache by default** (as does the official `php:8.3.30-apache`). The Apache-level
+> `php_admin_flag session.upload_progress.enabled off` pin is the same as for 8.3.8.
 
 ## Patches
 

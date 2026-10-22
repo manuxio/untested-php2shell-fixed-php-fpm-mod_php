@@ -17,6 +17,7 @@ function nv($k, $v) {
 
 $params = array(
 	'SCRIPT_FILENAME' => "/var/www/html/$script",
+	'DOCUMENT_ROOT' => '/var/www/html', // needed for FPM to look up .user.ini files
 	'SCRIPT_NAME' => "/$script",
 	'REQUEST_METHOD' => $body === '' ? 'GET' : 'POST',
 	'CONTENT_TYPE' => $ctype,

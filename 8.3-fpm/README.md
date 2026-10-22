@@ -16,6 +16,7 @@ their `FROM` line.
 | Directory | Replaces | Planned image |
 |---|---|---|
 | [`8.3.30/`](8.3.30/) | `php:8.3.30-fpm` (Debian trixie) | `ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:8.3.30-fpm` |
+| [`8.3.8/`](8.3.8/) | `php:8.3.8-fpm` (Debian bookworm) | `ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:8.3.8-fpm` |
 
 There is no `latest` tag. Each directory is a self-contained build context:
 
@@ -32,6 +33,7 @@ commit that shipped that PHP version:
 | Version | Recipe | Commit | Next commit (changes the version) |
 |---|---|---|---|
 | 8.3.30 | `8.3/trixie/fpm` | `3a74db043f304883e3553bdca969363399c87b5f` ("Docs: Fix typo in Dockerfile comment", 20 Jan 2026; includes `e5de0e8e` "Readd www section to fpm.d/zz-docker.conf") | `f4e930a7` "Update to 8.4.21, 8.3.31, 8.2.31" |
+| 8.3.8 | `8.3/bookworm/fpm` | `b4f429eb7d631134d72a3c47b4bb4b011477253e` (parent of `21e6a92a`) | `21e6a92a` "Update 8.3 to 8.3.9" |
 
 `php:8.3.30-fpm` is the trixie variant (the first Debian variant of `versions.json`, which gets the
 un-suffixed tags). Base image, packages, configure flags, helper scripts (`docker-php-*`),
@@ -58,6 +60,15 @@ installed packages is identical.
 tarball; extensions built later compile against the installed, patched headers, which is what
 matters for them (verified: `docker-php-ext-install bcmath` works). Do not rebuild the statically
 compiled core (e.g. `session`) from that tree.
+
+
+> **8.3.8** is the FPM twin of [`8.3-apache/8.3.8`](../8.3-apache/8.3.8/): same recipe commit
+> (`8.3/bookworm/fpm` @ `b4f429eb`), and the CVE patch, mask patch and ini file are byte-identical
+> to the Apache twin's — the hand backport of php-src `3c832b52` to 8.3.8 is documented in
+> [`8.3-apache/README.md`](../8.3-apache/README.md). The pool file is the same as for 8.3.30. No
+> `touch` step is needed on bookworm (Debian's re2c 3.0 is the generator the patch's outputs were
+> made with). That recipe predates "Enable opcache by default", so — like the official
+> `php:8.3.8-fpm` — **OPcache is not enabled**.
 
 ## Patches
 
