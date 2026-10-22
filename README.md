@@ -1,4 +1,4 @@
-# untested-php2shell-fixed-php
+# untested-php2shell-fixed-php-fpm-mod_php
 
 > **UNTESTED, UNOFFICIAL, NO WARRANTY.** Best-effort builds of end-of-life PHP versions with
 > a mitigation for **php2shell** — [CVE-2026-109618](https://github.com/php/php-src/security/advisories/GHSA-w8hw-w9fx-j79w)
@@ -11,7 +11,7 @@ images, rebuilt from the same recipes with security patches applied. One image t
 version/SAPI combination, docker-library style:
 
 ```bash
-docker pull ghcr.io/manuxio/untested-php2shell-fixed-php:<version>-<sapi>
+docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:<version>-<sapi>
 ```
 
 | Tag | Base recipe | Patch source | Directory |
@@ -20,10 +20,13 @@ docker pull ghcr.io/manuxio/untested-php2shell-fixed-php:<version>-<sapi>
 | `5.4.45-apache` | php:5.4-apache (jessie) | same patch | [5.4.45-apache](5.4.45-apache/) |
 | `7.2.34-fpm` | php:7.2-fpm (buster) | hand port of the upstream 7.4 minimal mitigation | [7.2.34-fpm](7.2.34-fpm/) |
 | `7.2.34-apache` | php:7.2-apache (buster) | same patch | [7.2.34-apache](7.2.34-apache/) |
+| `7.4.32-apache` | php:7.4-apache (bullseye) | upstream 7.4 minimal mitigation, unmodified | [7.4-apache](7.4-apache/) |
+| `7.4.33-apache` | php:7.4-apache (bullseye) | upstream 7.4 minimal mitigation, unmodified | [7.4-apache](7.4-apache/) |
 
-7.2.34 is the final PHP 7.2 release; 5.4.45 the final 5.4. Further version families
-(7.4, 8.0, 8.1) are being added with the best available patch source for each
-(upstream 7.4 patch; Remi's backports for 8.0/8.1).
+Minor-version alias tags (`5.4-fpm`, `7.2-apache`, `7.4-apache`, ...) point to the latest
+patched release of that family. 5.4.45, 7.2.34 and 7.4.33 are the final releases of their
+families. The 8.0 and 8.1 families are being added with the best available patch source
+(Remi's backports).
 
 ## Common changes vs the official images
 
@@ -53,6 +56,16 @@ Each directory ships a functional `test/` harness:
 ```bash
 sh <dir>/test/run.sh <image>
 ```
+
+## Credits
+
+- **Remi Collet** and his PHP repository — [remirepo](https://rpms.remirepo.net/)
+  ([git.remirepo.net](https://git.remirepo.net/cgit/rpms/php/), [github.com/remicollet](https://github.com/remicollet)) —
+  for maintaining the official-quality security backports of the php2shell fix for
+  EOL PHP branches (7.4, 8.0, 8.1), which this repo uses or cross-checks its patches against.
+- The **PHP project** for the upstream minimal mitigation
+  ([php-src@712e60f9ed](https://github.com/php/php-src/commit/712e60f9edfd03f0960fc4fc3c2c375f42b90aa2)).
+- **docker-library/php** maintainers for the original image recipes.
 
 ## License
 

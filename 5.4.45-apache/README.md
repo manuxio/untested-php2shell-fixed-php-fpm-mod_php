@@ -14,7 +14,7 @@ It is meant as a drop-in replacement for the official `php:5.4-apache` image: sw
 ## Image
 
 ```bash
-docker pull ghcr.io/manuxio/untested-php2shell-fixed-php:5.4.45-apache
+docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:5.4.45-apache
 ```
 
 The build recipe is the last official `php:5.4-apache` Dockerfile from
@@ -48,7 +48,7 @@ docker build -t php:5.4.45-apache-cve .
 The upstream PHP 7.4 patch ([php-src@712e60f9ed](https://github.com/php/php-src/commit/712e60f9edfd03f0960fc4fc3c2c375f42b90aa2))
 does not apply to 5.4 (Zend Engine 2.4 vs 3), so it was re-implemented by hand. The patch is
 SAPI-independent and identical to the one in the
-[FPM variant](https://github.com/manuxio/untested-php2shell-fixed-php).
+[FPM variant](https://github.com/manuxio/untested-php2shell-fixed-php-fpm-mod_php).
 
 | Upstream 7.4 idea | 5.4 port |
 |---|---|

@@ -14,7 +14,7 @@ Dockerfiles only need to change their `FROM` line.
 ## Image
 
 ```bash
-docker pull ghcr.io/manuxio/untested-php2shell-fixed-php:7.2.34-fpm
+docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:7.2.34-fpm
 ```
 
 The build recipe is the last official `php:7.2-fpm` (Debian buster) Dockerfile from

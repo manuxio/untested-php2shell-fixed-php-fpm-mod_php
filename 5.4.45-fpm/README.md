@@ -12,7 +12,7 @@ and [CVE-2026-109619](https://github.com/php/php-src/security/advisories/GHSA-6w
 ## Image
 
 ```bash
-docker pull ghcr.io/manuxio/untested-php2shell-fixed-php:5.4.45-fpm
+docker pull ghcr.io/manuxio/untested-php2shell-fixed-php-fpm-mod_php:5.4.45-fpm
 ```
 
 The build recipe is the last official `php:5.4-fpm` Dockerfile from

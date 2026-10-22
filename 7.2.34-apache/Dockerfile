@@ -296,7 +296,7 @@ WORKDIR /var/www/html
 EXPOSE 80
 CMD ["apache2-foreground"]
 
-LABEL org.opencontainers.image.source="https://github.com/manuxio/untested-php2shell-fixed-php" \
+LABEL org.opencontainers.image.source="https://github.com/manuxio/untested-php2shell-fixed-php-fpm-mod_php" \
 	org.opencontainers.image.description="UNTESTED: PHP 7.2.34 Apache (mod_php) with an unofficial backport of the CVE-2026-109618/109619 (php2shell) minimal mitigation" \
 	org.opencontainers.image.version="7.2.34" \
 	org.opencontainers.image.licenses="PHP-3.01"
