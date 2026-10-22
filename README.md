@@ -6,6 +6,10 @@
 > None of this has been reviewed by the PHP project. EOL PHP versions have many other known,
 > unfixed vulnerabilities: migrate off them.
 
+This repository exists because a vulnerability of this magnitude also needed mitigating
+on PHP versions that, while long past end of life, are well known to still be widely
+deployed on the Internet and received no official fix.
+
 Drop-in replacements for the official [docker-library/php](https://github.com/docker-library/php)
 images, rebuilt from the same recipes with security patches applied. One image tag per
 version/SAPI combination, docker-library style:
@@ -66,8 +70,6 @@ sh <dir>/test/run.sh <image>
   ([git.remirepo.net](https://git.remirepo.net/cgit/rpms/php/), [github.com/remicollet](https://github.com/remicollet)) —
   for maintaining the official-quality security backports of the php2shell fix for
   EOL PHP branches (7.4, 8.0, 8.1), which this repo uses or cross-checks its patches against.
-- The **PHP project** for the upstream minimal mitigation
-  ([php-src@712e60f9ed](https://github.com/php/php-src/commit/712e60f9edfd03f0960fc4fc3c2c375f42b90aa2)).
 - **docker-library/php** maintainers for the original image recipes.
 
 ## License
