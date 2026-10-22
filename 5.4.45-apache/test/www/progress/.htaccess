@@ -1,0 +1,3 @@
+php_value session.save_path /tmp
+php_flag session.upload_progress.enabled on
+php_flag session.upload_progress.cleanup off
