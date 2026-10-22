@@ -1,0 +1,3 @@
+php_value session.upload_progress.enabled 1
+php_value session.upload_progress.cleanup 0
+php_value session.save_path /tmp
